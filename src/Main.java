@@ -2,19 +2,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
         try {reader("src/DinoDiet.txt");}
         catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
         }
 
         badArgs(-1, "Joe");
-        badArgs(15, "Joe");
+        badArgs(15, "Jeep");
     }
 
     public static void reader(String filename) throws IOException {
@@ -43,7 +39,7 @@ public class Main {
 }
 
 class Dinosaur {
-    final private int age;
+    private int age;
     final private String name;
 
     Dinosaur(int age, String name) {
@@ -53,6 +49,14 @@ class Dinosaur {
 
         this.age = age;
         this.name = name;
+    }
+
+    void setAge(int age) throws IllegalArgumentException {
+        if (age < 0) {
+            throw new IllegalArgumentException("Age cannot be negative");
+        } else {
+            this.age = age;
+        }
     }
 
     String getInfo() {
